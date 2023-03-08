@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -15,12 +15,12 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   focus1;
   focus2;
-  user: FormGroup;
+  user: UntypedFormGroup;
 
   constructor(
     private router: Router, 
     private tokenService: TokenService, 
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private auth: AuthService,
     private noti: NotificationService) { }
 
