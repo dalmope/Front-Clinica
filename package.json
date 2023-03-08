@@ -77,7 +77,7 @@
     "core-js": "3.23.1",
     "jquery": "3.6.0",
     "jw-bootstrap-switch-ng2": "2.0.5",
-    "ngx-bootstrap": "10.2.0",
+    "ngx-bootstrap": "9.0.0",
     "nouislider": "15.6.0",
     "rxjs": "7.5.5",
     "tslib": "2.4.0",
