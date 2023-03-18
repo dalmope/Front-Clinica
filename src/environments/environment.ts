@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  authURL: 'https://sistemainventario-api.herokuapp.com/auth/',
+  authURL: 'http://localhost:8090/auth/',
 };
 
 /*

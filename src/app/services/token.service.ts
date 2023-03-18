@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Buffer } from 'buffer';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -30,16 +31,18 @@ export class TokenService {
     return false;
   }
 
-  public getUserName(): string {
+  private getPaylodFromToken = (base64: string): string => base64.split('.')[1]
+
+  private decodeBase64 = (base64: string): string => Buffer.from(base64, 'base64').toString('utf-8');
+  
+  public async getUserName(): Promise<string | null> {
     if (!this.isLogged()) {
       return null;
     }
     const token = this.getToken();
-    const payload = token.split('.')[1];
-    const payloadDecoded = window.atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const username = values.sub;
-    return username;
+    const decodedPayload =  this.decodeBase64(this.getPaylodFromToken(token));
+    const values = JSON.parse(decodedPayload);
+    return values.sub;
   }
 
   public isAdmin(): boolean {
@@ -47,9 +50,8 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token.split('.')[1];
-    const payloadDecoded = window.atob(payload);
-    const values = JSON.parse(payloadDecoded);
+    const decodedPayload =  this.decodeBase64(this.getPaylodFromToken(token));
+    const values = JSON.parse(decodedPayload);
     const roles = values.roles;
     if (roles.indexOf('ROLE_ADMIN') < 0) {
       return false;
