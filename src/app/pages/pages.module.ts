@@ -18,6 +18,7 @@ import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { PopoverModule } from "ngx-bootstrap/popover";
 
 import { IndexComponent } from "./index/index.component";
+import { HomeComponent } from "./home/home.component"
 import { ProfilepageComponent } from "./examples/profilepage/profilepage.component";
 import { RegisterpageComponent } from "./examples/registerpage/registerpage.component";
 import { LandingpageComponent } from "./examples/landingpage/landingpage.component";
@@ -47,6 +48,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
   ],
   declarations: [
     IndexComponent,
+    HomeComponent,
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,

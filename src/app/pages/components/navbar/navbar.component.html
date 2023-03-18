@@ -60,11 +60,13 @@
                         <i aria-hidden="true" class="tim-icons icon-single-02">
                         </i>
                     </a>
-                    <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right"
-                        *dropdownMenu>
-                        <a class="dropdown-header"> Usuario </a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="myModal2.show()">
+                    <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                        <!-- <a class="dropdown-header"> Usuario </a> -->
+                        <a *ngIf="!isLogged" class="dropdown-item" href="javascript:void(0)" (click)="myModal2.show()">
                             Iniciar sesion
+                        </a>
+                        <a *ngIf="isLogged" class="dropdown-item" href="javascript:void(0)" (click)="cerrarSesion()">
+                            Cerrar Sesion
                         </a>
                     </div>
                 </li>
@@ -80,58 +82,77 @@
 <div aria-hidden="true" aria-labelledby="myModalLabel" bsModal class="modal fade modal-black" #myModal2="bs-modal"
     id="myModal2" role="dialog" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <button aria-hidden="true" class="close" data-dismiss="modal" (click)="myModal2.hide()" type="button">
-                    <i class="tim-icons icon-simple-remove text-white"> </i>
-                </button>
-                <div class="text-muted text-center ml-auto mr-auto">
-                    <h3 class="mb-0">Iniciar Sesion </h3>
+        <div *ngIf="!isLogged">
+            <div class="modal-content">
+                <div *ngIf="!isLogged" class="modal-header justify-content-center">
+                    <button aria-hidden="true" class="close" data-dismiss="modal" (click)="myModal2.hide()" type="button">
+                        <i class="tim-icons icon-simple-remove text-white"> </i>
+                    </button>
+                    <div class="text-muted text-center ml-auto mr-auto">
+                        <h3 class="mb-0">Iniciar Sesion </h3>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="text-center text-muted mb-4 mt-3">
-                    <small> Ingresa tus credenciales </small>
+                <div class="modal-body">
+                    <div class="text-center text-muted mb-4 mt-3">
+                        <small> Ingresa tus credenciales </small>
+                    </div>
+                    <form  novalidate (ngSubmit)="onSubmit()" [formGroup]="user">
+                        <div class="form-group mb-3">
+                            <div class="input-group input-group-alternative"
+                                [ngClass]="{ 'input-group-focus': focus1 === true }">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="tim-icons icon-email-85"> </i>
+                                    </span>
+                                </div>
+                                <input class="form-control" placeholder="Codigo Institucional" type="search" (focus)="focus1 = true"
+                                    (blur)="focus1 = false" formControlName="nombreUsuario" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative"
+                                [ngClass]="{ 'input-group-focus': focus2 === true }">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="tim-icons icon-key-25"> </i>
+                                    </span>
+                                </div>
+                                <input class="form-control" placeholder="Password" type="password" (focus)="focus2 = true"
+                                    (blur)="focus2 = false" formControlName="password" />
+                            </div>
+                        </div>
+                        <div class="form-check mt-3">
+                            <label class="form-check-label">
+                                <input checked="checked" class="form-check-input" type="checkbox" />
+                                <span class="form-check-sign"> </span> Recuerdame!
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary my-4" type="submit" [disabled]="user.invalid">
+                                Iniciar sesion
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form  novalidate (ngSubmit)="onSubmit()" [formGroup]="user">
-                    <div class="form-group mb-3">
-                        <div class="input-group input-group-alternative"
-                            [ngClass]="{ 'input-group-focus': focus1 === true }">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="tim-icons icon-email-85"> </i>
-                                </span>
-                            </div>
-                            <input class="form-control" placeholder="Email" type="nombreUsuario" (focus)="focus1 = true"
-                                (blur)="focus1 = false" formControlName="nombreUsuario" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group input-group-alternative"
-                            [ngClass]="{ 'input-group-focus': focus2 === true }">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="tim-icons icon-key-25"> </i>
-                                </span>
-                            </div>
-                            <input class="form-control" placeholder="Password" type="password" (focus)="focus2 = true"
-                                (blur)="focus2 = false" formControlName="password" />
-                        </div>
-                    </div>
-                    <div class="form-check mt-3">
-                        <label class="form-check-label">
-                            <input checked="checked" class="form-check-input" type="checkbox" />
-
-                            <span class="form-check-sign"> </span> Recuerdame!
-                        </label>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary my-4" type="submit" [disabled]="user.invalid">
-                            Iniciar sesion
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
+        <div *ngIf="isLogged">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <button aria-hidden="true" class="close" data-dismiss="modal" (click)="myModal2.hide()" type="button">
+                        <i class="tim-icons icon-simple-remove text-white"> </i>
+                    </button>
+                    <div class="text-muted text-center ml-auto mr-auto">
+                        <h3 class="mb-0">Bienvenido</h3>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center text-muted mb-4 mt-3">
+                        <h4> Inicio de sesion Exitoso </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>

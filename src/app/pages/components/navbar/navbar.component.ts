@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
   }
 
   cerrarSesion() {
+    this.isLogged = false
     this.tokenService.logOut();
   }
 
@@ -42,6 +43,7 @@ export class NavbarComponent implements OnInit {
     this.auth.login(this.user.value).subscribe({
       next: data => {
         this.tokenService.setToken(data.token);
+        this.isLogged = true;
         this.router.navigate(['/']);
       },
       error: err => {
