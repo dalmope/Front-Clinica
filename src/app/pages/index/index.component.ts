@@ -13,15 +13,19 @@ export class IndexComponent implements OnInit, OnDestroy {
   date = new Date();
   pagination = 3;
   pagination1 = 1;
-  constructor() {}
+
+  constructor () {
+    // TODO document why this constructor is empty
+  }
+  
   scrollToDownload(element: any) {
     element.scrollIntoView({ behavior: "smooth" });
   }
   ngOnInit() {
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.add("index-page");
 
-    var slider = document.getElementById("sliderRegular");
+    const slider = document.getElementById("sliderRegular");
 
     noUiSlider.create(slider, {
       start: 40,
@@ -32,7 +36,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       }
     });
 
-    var slider2 = document.getElementById("sliderDouble");
+    const slider2 = document.getElementById("sliderDouble");
 
     noUiSlider.create(slider2, {
       start: [20, 60],
@@ -44,7 +48,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.remove("index-page");
   }
 }
