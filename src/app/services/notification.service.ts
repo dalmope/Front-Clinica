@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-declare var $: any;
+declare const $: any;
 
 const type = ['', 'info', 'success', 'warning', 'danger'];
 
@@ -8,26 +8,32 @@ const type = ['', 'info', 'success', 'warning', 'danger'];
 })
 export class NotificationService {
 
-  constructor() { }
+  onCongrats(message) {
+    message = (message === undefined) ? 'Congratulations! You have successfully completed this task.' : message;
+    this.showNotification('Congratulations!', 'icon-coins', 'bottom','center', message, 'alert-primary');
+  }
+
+  onInformation(message) {
+    message = (message === undefined) ? 'You have successfully completed this task.' : message;
+    this.showNotification('Info!', 'icon-trophy', 'bottom','center', message, 'alert-info');
+  }
 
   onSuccesfull(message) {
-    // 1 --> azul
-    // 2 --> verde
-    // 3 --> naranja
-    const color = 2;
-    this.showNotification('Well done! --> ', 'tim-icons icon-bell-55', 'bottom','center', message, color);
+    message = (message === undefined) ? 'You have successfully completed this task.' : message;
+    this.showNotification('Heads up!', 'icon-bell-55', 'bottom','center', message, 'alert-success');
+  }
+
+  onWarning(message) {
+    message = (message === undefined) ? 'Something went wrong, please try again.' : message;
+    this.showNotification('Warning!', 'icon-bulb-63', 'bottom','center', message, "alert-warning");
   }
 
   onError(message) {
-    // 1 --> azul
-    // 2 --> verde
-    // 3 --> naranja
-    const color = 4;
-    this.showNotification('Warning! --> ', 'tim-icons icon-alert-circle-exc', 'bottom','center', message, color);
+    message = (message === undefined) ? 'Something went wrong, please try again.' : message;
+    this.showNotification('Oh snap!', 'icon-support-17', 'bottom','center', message, "alert-danger");
   }
 
   showNotification(alert, icono, from, align, message, color) {
-
     $.notify({
       message: message,
       icon: icono,
@@ -38,20 +44,14 @@ export class NotificationService {
         from: from,
         align: align
       },
-      template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
-        '<button mat-button  type="button" class="btn btn-neutral btn-icon btn-round mr-1" data-notify="dismiss">  <i class="tim-icons icon-simple-remove"></i></button>' +
-        '<b><span data-notify="icon">{1}</span></b> ' +
-        '<b>' + alert + '<span data-notify="message">{2}</span> </b>' +
-        '<div class="progress" data-notify="progressbar">' +
-        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-        '</div>' +
-        '<a href="{3}" target="{4}" data-notify="url"></a>' +
-        '</div>'
+      template: '<div style="width: 50%"><alert class="alert-with-icon"><div role="alert" class="alert ' + color + ' alert-with-icon alert-dismissible" style="position: relative;"><span data-notify="icon" class="tim-icons ' + 
+                icono + '"></span><button type="button" aria-label="Close" class="close custom-button" data-notify="dismiss"><span aria-hidden="true" class="visually-hidden">×</span><span class="sr-only visually-hidden">Close</span></button><!----><span><b>' +
+                alert + ' - </b>' + message + ' </span></div><!----></alert> </div>',
+    });
+  
+    $('[data-notify="dismiss"]').on('click', function(){
+      $(this).closest('.notifyjs-wrapper').hide();
     });
   }
-  ngOnInit() {
-  }
-
-
 
 }

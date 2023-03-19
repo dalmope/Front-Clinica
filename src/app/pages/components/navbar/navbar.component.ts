@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     private tokenService: TokenService, 
     private fb: UntypedFormBuilder,
     private auth: AuthService,
-    private noti: NotificationService) { }
+    private noti: NotificationService,) { }
 
   ngOnInit(): void {
     this.user = this.fb.group({
