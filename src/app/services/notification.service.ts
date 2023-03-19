@@ -3,6 +3,8 @@ declare const $: any;
 
 const type = ['', 'info', 'success', 'warning', 'danger'];
 
+const displayedMessages = new Set();
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,13 +35,27 @@ export class NotificationService {
     this.showNotification('Oh snap!', 'icon-support-17', 'bottom','center', message, "alert-danger");
   }
 
+   addToSetTemporarily(element, duration) {
+    displayedMessages.add(element);
+    setTimeout(() => {
+      displayedMessages.delete(element);
+    }, duration);
+  }
+
   showNotification(alert, icono, from, align, message, color) {
+
+    if (displayedMessages.has(message)) {
+      return;
+    }
+
+    this.addToSetTemporarily(message, 5000)
+
     $.notify({
       message: message,
       icon: icono,
     }, {
       type: type[color],
-      timer: 4000,
+      timer: 2000,
       placement: {
         from: from,
         align: align

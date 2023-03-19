@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
       },
       error: err => {
       console.log("🚀 ~ file: navbar.component.ts ~ line 47 ~ NavbarComponent ~ this.auth.login ~ err", err)
-        this.noti.onError(err.error.message);
+        this.noti.onError(err.error.error);
       },
     });
   }
