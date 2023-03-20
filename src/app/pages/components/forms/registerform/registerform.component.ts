@@ -7,6 +7,11 @@ import { NotificationService } from 'src/app/services/notification.service';
   templateUrl: './registerform.component.html',
 })
 export class RegisterformComponent {
+  dataSelects = {
+    "1": "Cedula de ciudadania",
+    "2": "Cedula de Extrangeria",
+    "3": "Pasaporte",
+  }
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),

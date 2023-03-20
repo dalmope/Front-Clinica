@@ -11,7 +11,8 @@
             <app-input-group [control]="formGroup.controls.mail" inputId="mail" placeholder="Correo electronico" inputType="email" iconClass="tim-icons icon-email-85"></app-input-group>
             <app-input-group [control]="formGroup.controls.phone" inputId="phone" placeholder="Numero telefonico" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
             <app-input-group [control]="formGroup.controls.adress" inputId="adress" placeholder="Direccion" inputType="text" iconClass="tim-icons icon-email-85"></app-input-group>
-            <app-input-group [control]="formGroup.controls.idDniType" inputId="idDniType" placeholder="Tipo de documento" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-select [dataSelects]="dataSelects" [control]="formGroup.controls.idDniType" inputId="idDniType" placeholder="Tipo de documento" inputType="number" iconClass="tim-icons icon-email-85"></app-select>
+            <!-- <app-input-group [control]="formGroup.controls.idDniType" inputId="idDniType" placeholder="Tipo de documento" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group> -->
             <app-input-group [control]="formGroup.controls.dniNumber" inputId="dniNumber" placeholder="Numero de Documento" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
             <app-input-group [control]="formGroup.controls.password" inputId="password" placeholder="Contraseña" inputType="password" iconClass="tim-icons icon-lock-circle"></app-input-group>
             
