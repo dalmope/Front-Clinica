@@ -28,6 +28,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { RegisterformComponent } from './components/forms/registerform/registerform.component';
 import { FormcontrolComponent } from './components/forms/inputs/formcontrol/formcontrol.component';
 import { InputGroupComponent } from './components/forms/inputs/inputgroup/inputgroup.component';
+import { SelectComponent } from './components/forms/inputs/select/select.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { InputGroupComponent } from './components/forms/inputs/inputgroup/inputg
     RegisterformComponent,
     FormcontrolComponent,
     InputGroupComponent,
+    SelectComponent,
   ],
   exports: [
     IndexComponent,

@@ -1,9 +1,9 @@
-<div class="input-group form-group" [ngClass]="{ 'input-group-focus': focus && !danger }" [ngClass]="{ 'has-danger': danger }">
+<div class="input-group form-group" [ngClass]="{ 'input-group-focus': focus && !danger && !success }" [ngClass]="{ 'has-danger': danger, 'has-success': success }">
     <div class="input-group-prepend">
         <div class="input-group-text">
             <i [ngClass]="iconClass"> </i>
         </div>
     </div>
-    <input [formControl]="control" [id]="inputId" class="form-control" [ngClass]="{ 'form-control-danger': true }" [placeholder]="placeholder" [type]="inputType"
+    <input autocomplete="off" [formControl]="control" [id]="inputId" class="form-control" [ngClass]="{ 'form-control-danger': danger, 'form-control-success': success }" [placeholder]="placeholder" [type]="inputType"
         (focus)="onFocus()" (blur)="onBlur()" />
 </div>

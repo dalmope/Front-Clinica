@@ -14,6 +14,7 @@ export class InputGroupComponent{
   @Input() iconClass: string = 'tim-icons icon-single-02';
   focus = false;
   danger = false
+  success = false
 
   constructor() {
     console.log(this.control);
@@ -24,9 +25,10 @@ export class InputGroupComponent{
   }
 
   onBlur() {
-    this.focus = false;
     console.log(this.control);
     this.danger = this.control.invalid;
+    this.success = this.control.valid;
+    this.focus = false;
   }
 
 }
