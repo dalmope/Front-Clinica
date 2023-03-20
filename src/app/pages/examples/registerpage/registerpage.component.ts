@@ -2,27 +2,24 @@ import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
 
 @Component({
   selector: "app-registerpage",
-  templateUrl: "registerpage.component.html"
+  templateUrl: "registerpage.component.html",
 })
 export class RegisterpageComponent implements OnInit, OnDestroy {
   isCollapsed = true;
-  focus;
-  focus1;
-  focus2;
   constructor() {}
   @HostListener("document:mousemove", ["$event"])
   onMouseMove(e) {
-    var squares1 = document.getElementById("square1");
-    var squares2 = document.getElementById("square2");
-    var squares3 = document.getElementById("square3");
-    var squares4 = document.getElementById("square4");
-    var squares5 = document.getElementById("square5");
-    var squares6 = document.getElementById("square6");
-    var squares7 = document.getElementById("square7");
-    var squares8 = document.getElementById("square8");
+    const squares1 = document.getElementById("square1");
+    const squares2 = document.getElementById("square2");
+    const squares3 = document.getElementById("square3");
+    const squares4 = document.getElementById("square4");
+    const squares5 = document.getElementById("square5");
+    const squares6 = document.getElementById("square6");
+    const squares7 = document.getElementById("square7");
+    const squares8 = document.getElementById("square8");
 
-    var posX = e.clientX - window.innerWidth / 2;
-    var posY = e.clientY - window.innerWidth / 6;
+    const posX = e.clientX - window.innerWidth / 2;
+    const posY = e.clientY - window.innerWidth / 6;
 
     squares1.style.transform =
       "perspective(500px) rotateY(" +
@@ -75,13 +72,13 @@ export class RegisterpageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.add("register-page");
 
     this.onMouseMove(event);
   }
   ngOnDestroy() {
-    var body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.remove("register-page");
   }
 }

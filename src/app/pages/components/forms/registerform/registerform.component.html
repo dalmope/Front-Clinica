@@ -1,0 +1,33 @@
+<div class="card card-register">
+    <div class="card-header">
+        <img alt="Card image" class="card-img" src="assets/img/square1-red.png" />
+
+        <h4 class="card-title">Registro</h4>
+    </div>
+    <div class="card-body">
+        <form class="form" (ngSubmit)="onSubmit()">
+            <app-input-group [control]="formGroup.controls.name" inputId="name" placeholder="Nombres" inputType="text" iconClass="tim-icons icon-single-02"></app-input-group>
+            <app-input-group [control]="formGroup.controls.surname" inputId="surname" placeholder="Apellidos" inputType="text" iconClass="tim-icons icon-single-02"></app-input-group>
+            <app-input-group [control]="formGroup.controls.mail" inputId="mail" placeholder="Correo electronico" inputType="email" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-input-group [control]="formGroup.controls.phone" inputId="phone" placeholder="Numero telefonico" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-input-group [control]="formGroup.controls.adress" inputId="adress" placeholder="Direccion" inputType="text" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-input-group [control]="formGroup.controls.idDniType" inputId="idDniType" placeholder="Tipo de documento" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-input-group [control]="formGroup.controls.dniNumber" inputId="dniNumber" placeholder="Numero de Documento" inputType="number" iconClass="tim-icons icon-email-85"></app-input-group>
+            <app-input-group [control]="formGroup.controls.password" inputId="password" placeholder="Contraseña" inputType="password" iconClass="tim-icons icon-lock-circle"></app-input-group>
+            
+            <div class="form-check text-left">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" />
+                    <span class="form-check-sign"> </span> I agree to the
+                    <a href="javascript:void(0)"> terms and conditions </a> .
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    <div class="card-footer">
+        <a (click)="onSubmit()" type="submit" class= "btn btn-danger btn-round btn-lg" href="javascript:void(0)">
+            Get Started
+        </a>
+    </div>
+</div>

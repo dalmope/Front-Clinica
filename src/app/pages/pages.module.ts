@@ -25,6 +25,9 @@ import { LandingpageComponent } from "./examples/landingpage/landingpage.compone
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { RegisterformComponent } from './components/forms/registerform/registerform.component';
+import { FormcontrolComponent } from './components/forms/inputs/formcontrol/formcontrol.component';
+import { InputGroupComponent } from './components/forms/inputs/inputgroup/inputgroup.component';
 
 @NgModule({
   imports: [
@@ -55,12 +58,16 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
+    RegisterformComponent,
+    FormcontrolComponent,
+    InputGroupComponent,
   ],
   exports: [
     IndexComponent,
     ProfilepageComponent,
     RegisterpageComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    InputGroupComponent,
   ],
   providers: []
 })

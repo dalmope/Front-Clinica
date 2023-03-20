@@ -102,10 +102,10 @@
                                 [ngClass]="{ 'input-group-focus': focus1 === true }">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="tim-icons icon-email-85"> </i>
+                                        <i class="tim-icons icon-single-02"> </i>
                                     </span>
                                 </div>
-                                <input class="form-control" placeholder="Codigo Institucional" type="search" (focus)="focus1 = true"
+                                <input class="form-control" placeholder="Codigo Institucional" type="number" (focus)="focus1 = true"
                                     (blur)="focus1 = false" formControlName="nombreUsuario" />
                             </div>
                         </div>
@@ -117,16 +117,16 @@
                                         <i class="tim-icons icon-key-25"> </i>
                                     </span>
                                 </div>
-                                <input class="form-control" placeholder="Password" type="password" (focus)="focus2 = true"
+                                <input class="form-control" placeholder="Contraseña" type="password" (focus)="focus2 = true"
                                     (blur)="focus2 = false" formControlName="password" />
                             </div>
                         </div>
-                        <div class="form-check mt-3">
+                        <!-- <div class="form-check mt-3">
                             <label class="form-check-label">
                                 <input checked="checked" class="form-check-input" type="checkbox" />
                                 <span class="form-check-sign"> </span> Recuerdame!
                             </label>
-                        </div>
+                        </div> -->
                         <div class="text-center">
                             <button class="btn btn-primary my-4" type="submit" [disabled]="user.invalid">
                                 Iniciar sesion
