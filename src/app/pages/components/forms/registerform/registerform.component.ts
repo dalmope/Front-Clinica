@@ -12,6 +12,7 @@ export class RegisterformComponent {
     "2": "Cedula de Extrangeria",
     "3": "Pasaporte",
   }
+  agreeToTerms = false;
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -29,7 +30,7 @@ export class RegisterformComponent {
   onSubmit() {
     if (this.formGroup.invalid) {
       //recorrer el objeto this.formGroup.invalid
-      for (const key in this.formGroup.controls) {
+      for (const key in this.formGroup.errors) {
         console.log(key);
         this.noti.onError(key + ' es requerido');
       }

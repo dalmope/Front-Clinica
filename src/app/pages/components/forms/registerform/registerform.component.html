@@ -17,7 +17,7 @@
             
             <div class="form-check text-left">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" />
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="agreeToTerms" />
                     <span class="form-check-sign"> </span> I agree to the
                     <a href="javascript:void(0)"> terms and conditions </a> .
                 </label>
@@ -25,7 +25,7 @@
         </form>
     </div>
     <div class="card-footer">
-        <a (click)="onSubmit()" type="submit" class= "btn btn-danger btn-round btn-lg" href="javascript:void(0)">
+        <a (click)="onSubmit()" type="submit" class= "btn btn-danger btn-round btn-lg" [ngClass]="{ 'disabled': !agreeToTerms }" href="javascript:void(0)">
             Get Started
         </a>
     </div>
