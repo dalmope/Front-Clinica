@@ -22,13 +22,7 @@ import { HomeComponent } from "./home/home.component"
 import { ProfilepageComponent } from "./examples/profilepage/profilepage.component";
 import { RegisterpageComponent } from "./examples/registerpage/registerpage.component";
 import { LandingpageComponent } from "./examples/landingpage/landingpage.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { RegisterformComponent } from './components/forms/registerform/registerform.component';
-import { FormcontrolComponent } from './components/forms/inputs/formcontrol/formcontrol.component';
-import { InputGroupComponent } from './components/forms/inputs/inputgroup/inputgroup.component';
-import { SelectComponent } from './components/forms/inputs/select/select.component';
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -37,6 +31,7 @@ import { SelectComponent } from './components/forms/inputs/select/select.compone
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    ComponentsModule,
     BsDropdownModule.forRoot(),
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
@@ -56,22 +51,12 @@ import { SelectComponent } from './components/forms/inputs/select/select.compone
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,
-    NavbarComponent,
-    FooterComponent,
-    SidebarComponent,
-    RegisterformComponent,
-    FormcontrolComponent,
-    InputGroupComponent,
-    SelectComponent,
   ],
   exports: [
     IndexComponent,
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,
-    InputGroupComponent,
-    NavbarComponent,
-    FooterComponent,
   ],
   providers: []
 })

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -26,8 +26,8 @@ export class SelectComponent {
     console.log(this.keys);
   }
 
-
   onBlur(){
     console.log(this.dataSelects);
+    console.log(this.control)
   }
 }

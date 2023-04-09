@@ -1,0 +1,7 @@
+<div class="form-group">
+  <select [formControl]="control" onfocus="this.size=3" (blur)="onBlur()" onchange="this.size=1" class="form-control"
+    id="selectFormControl">
+    <option selected>Choose...</option>
+    <option *ngFor="let key of keys" value="{{dataSelects[key]}}">{{dataSelects[key]}} </option>
+  </select>
+</div>

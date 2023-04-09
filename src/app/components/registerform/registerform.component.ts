@@ -8,9 +8,11 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class RegisterformComponent {
   dataSelects = {
-    "1": "Cedula de ciudadania",
-    "2": "Cedula de Extrangeria",
-    "3": "Pasaporte",
+    "1": "Seleccione su tipo de documento",
+    "2": "Cédula de ciudadanía",
+    "3": "Cédula de Extranjería",
+    "4": "Tarjeta de Identidad",
+    "5": "Pasaporte",
   }
   agreeToTerms = false;
 
@@ -28,8 +30,17 @@ export class RegisterformComponent {
   constructor(private noti: NotificationService) { }
 
   onSubmit() {
+    console.log("si sirvo")
+    Object.keys(this.formGroup.controls).forEach(key => {
+      // Get errors of every form control
+      if (this.formGroup.get(key).errors) {
+        this.noti.onError(key + ' es requerido');
+      }
+    });
     if (this.formGroup.invalid) {
+      console.log("si sirvo")
       //recorrer el objeto this.formGroup.invalid
+      console.log(this.formGroup)
       for (const key in this.formGroup.errors) {
         console.log(key);
         this.noti.onError(key + ' es requerido');

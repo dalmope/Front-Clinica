@@ -9,6 +9,7 @@ import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.c
 import { HomeComponent } from "./pages/home/home.component";
 import { IndexComponent } from "./pages/index/index.component";
 import { PagesModule } from "./pages/pages.module";
+import { ComponentsModule } from "./components/components.module";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -26,7 +27,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true
     }),
-    PagesModule
+    PagesModule,
+    ComponentsModule
   ],
   exports: []
 })
