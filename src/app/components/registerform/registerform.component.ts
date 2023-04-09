@@ -8,11 +8,10 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class RegisterformComponent {
   dataSelects = {
-    "1": "Seleccione su tipo de documento",
-    "2": "Cédula de ciudadanía",
-    "3": "Cédula de Extranjería",
-    "4": "Tarjeta de Identidad",
-    "5": "Pasaporte",
+    "0": "Cédula de ciudadanía",
+    "1": "Cédula de Extranjería",
+    "2": "Tarjeta de Identidad",
+    "3": "Pasaporte",
   }
   agreeToTerms = false;
 

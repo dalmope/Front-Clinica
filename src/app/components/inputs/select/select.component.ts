@@ -5,29 +5,20 @@ import { FormControl } from '@angular/forms';
   selector: 'app-select',
   templateUrl: './select.component.html',
 })
-export class SelectComponent {
+export class SelectComponent implements OnInit {
   @Input() inputId = "";
   @Input() control = new FormControl();
   @Input() label = "";
   @Input() placeholder: string = 'Nombres';
-  @Input() dataSelects: any = {
-    "1": "Option 1",
-    "2": "Option 2",
-    "3": "Option 3",
-  };
+  @Input() dataSelects: any = {};
   @Input() iconClass: string = 'tim-icons icon-single-02';
   focus = false;
   danger = false
   success = false
   keys = []
 
-  constructor() {
+  ngOnInit() {
     this.keys = Object.keys(this.dataSelects)
-    console.log(this.keys);
-  }
-
-  onBlur(){
-    console.log(this.dataSelects);
-    console.log(this.control)
+    this.control.setValue(this.keys[0]);
   }
 }
