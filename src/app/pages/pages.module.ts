@@ -70,6 +70,8 @@ import { SelectComponent } from './components/forms/inputs/select/select.compone
     RegisterpageComponent,
     LandingpageComponent,
     InputGroupComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   providers: []
 })
