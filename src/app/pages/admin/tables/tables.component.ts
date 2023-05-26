@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Consultorio } from 'src/app/models/consultorio';
+import { Consultorio } from 'src/app/models/Consultorio';
 import { ConsultorioService } from 'src/app/services/consultorio.service';
 
 @Component({
