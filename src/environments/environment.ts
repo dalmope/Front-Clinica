@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  authURL: 'http://localhost:8090/auth/',
+  server: 'https://usermicroservice-yh4i.onrender.com',
 };
 
 /*

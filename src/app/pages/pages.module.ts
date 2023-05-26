@@ -23,6 +23,9 @@ import { ProfilepageComponent } from "./examples/profilepage/profilepage.compone
 import { RegisterpageComponent } from "./examples/registerpage/registerpage.component";
 import { LandingpageComponent } from "./examples/landingpage/landingpage.component";
 import { ComponentsModule } from "../components/components.module";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { TablesComponent } from "./admin/tables/tables.component";
+import { EspecialidadComponent } from "./admin/especialidad/especialidad.component";
 
 @NgModule({
   imports: [
@@ -51,12 +54,18 @@ import { ComponentsModule } from "../components/components.module";
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,
+    DashboardComponent,
+    TablesComponent,
+    EspecialidadComponent,
   ],
   exports: [
     IndexComponent,
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,
+    DashboardComponent,
+    TablesComponent,
+    EspecialidadComponent,
   ],
   providers: []
 })

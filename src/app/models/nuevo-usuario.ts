@@ -1,13 +1,21 @@
 export class NuevoUsuario {
-    nombre: string;
-    nombreUsuario: string;
-    email: string;
+    name: string;
+    surname: string;
+    mail: string;
+    phone: string;
+    adress: string;
+    idDniType: string;
+    dniNumber: string;
     password: string;
-    
-    constructor(nombre: string, nombreUsuario: string, email: string, password: string) {
-        this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.password = password;
-    }
+
+    constructor(data: any) {
+        this.name = data.name || '';
+        this.surname = data.surname || '';
+        this.mail = data.mail || '';
+        this.phone = data.phone || '';
+        this.adress = data.adress || '';
+        this.idDniType = data.idDniType || '';
+        this.dniNumber = data.dniNumber || '';
+        this.password = data.password || '';
+      }
 }

@@ -48,7 +48,7 @@ export class NotificationService {
       return;
     }
 
-    this.addToSetTemporarily(message, 5000)
+    this.addToSetTemporarily(message, 5500)
 
     $.notify({
       message: message,

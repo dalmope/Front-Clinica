@@ -23,18 +23,13 @@
                 inputType="number" iconClass="fas fa-phone-alt"></app-input-group>
             <app-input-group [control]="formGroup.controls.adress" inputId="adress" placeholder="Direccion"
                 inputType="text" iconClass="fas fa-map-marker-alt"></app-input-group>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <app-select [dataSelects]="dataSelects" [control]="formGroup.controls.idDniType" inputId="idDniType"
-                        placeholder="Tipo de documento" inputType="number"
-                        iconClass="tim-icons icon-email-85"></app-select>
-                </div>
-                <div class="form-group col-md-6">
-                    <app-input-group [control]="formGroup.controls.dniNumber" inputId="dniNumber"
-                        placeholder="Numero de Documento" inputType="number"
-                        iconClass="fas fa-address-card"></app-input-group>
-                </div>
-            </div>
+
+            <app-select [dataSelects]="dataSelects" [control]="formGroup.controls.idDniType" inputId="idDniType"
+                placeholder="Tipo de documento" inputType="number" iconClass="tim-icons icon-email-85"></app-select>
+
+            <app-input-group [control]="formGroup.controls.dniNumber" inputId="dniNumber"
+                placeholder="Numero de Documento" inputType="number" iconClass="fas fa-address-card"></app-input-group>
+
             <app-input-group [control]="formGroup.controls.password" inputId="password" placeholder="Contraseña"
                 inputType="password" iconClass="fas fa-key"></app-input-group>
             <div class="form-check text-left">

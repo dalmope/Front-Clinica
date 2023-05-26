@@ -10,6 +10,9 @@ import { HomeComponent } from "./pages/home/home.component";
 import { IndexComponent } from "./pages/index/index.component";
 import { PagesModule } from "./pages/pages.module";
 import { ComponentsModule } from "./components/components.module";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { TablesComponent } from "./pages/admin/tables/tables.component";
+import { EspecialidadComponent } from "./pages/admin/especialidad/especialidad.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path: "index", component: IndexComponent },
   { path: "profile", component: ProfilepageComponent },
   { path: "register", component: RegisterpageComponent },
-  { path: "landing", component: LandingpageComponent }
+  { path: "landing", component: LandingpageComponent },
+  { path: "dashboard", component: DashboardComponent},
+  { path: "admin/consultorio", component: TablesComponent },
+  { path: "admin/especialidad", component: EspecialidadComponent }
 ];
 
 @NgModule({

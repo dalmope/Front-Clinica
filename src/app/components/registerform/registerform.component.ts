@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { NuevoUsuario } from 'src/app/models/nuevo-usuario';
 
 @Component({
   selector: 'app-registerform',
@@ -26,25 +28,26 @@ export class RegisterformComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   })
 
-  constructor(private noti: NotificationService) { }
+  constructor(private noti: NotificationService, private auth: AuthService) { }
 
   onSubmit() {
-    console.log("si sirvo")
-    Object.keys(this.formGroup.controls).forEach(key => {
-      // Get errors of every form control
-      if (this.formGroup.get(key).errors) {
-        this.noti.onError(key + ' es requerido');
-      }
-    });
     if (this.formGroup.invalid) {
-      console.log("si sirvo")
-      //recorrer el objeto this.formGroup.invalid
       console.log(this.formGroup)
       for (const key in this.formGroup.errors) {
-        console.log(key);
         this.noti.onError(key + ' es requerido');
       }
+      return;
     }
+
+    this.auth.register(new NuevoUsuario(this.formGroup.value)).subscribe({
+      next: (res: any) => {
+        this.noti.onSuccesfull(res.Message);
+        this.formGroup.reset();
+      },
+      error: (err: any) => {
+        this.noti.onError(err.error.Error);
+      }
+    });
   }
 
 }

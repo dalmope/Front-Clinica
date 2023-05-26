@@ -12,6 +12,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 export class NavbarComponent implements OnInit {
   isLogged = false
+  isAdmin = false
   isCollapsed = true;
   focus1;
   focus2;
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
     
     this.isCollapsed = true
     this.isLogged = this.tokenService.isLogged();
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
   cerrarSesion() {

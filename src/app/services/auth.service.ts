@@ -11,12 +11,14 @@ import { NuevoUsuario } from '../models/nuevo-usuario';
 })
 export class AuthService {
 
-  authURL = environment.authURL;
+  serverUrl = environment.server;
+
+  authURL = this.serverUrl + '/auth/';
 
   constructor(private httpClient: HttpClient) { }
 
-  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any> {
-    return this.httpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario);
+  public register(nuevoUsuario: NuevoUsuario): Observable<any> {
+    return this.httpClient.post<any>(this.serverUrl + '/person/', nuevoUsuario);
   }
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO> {

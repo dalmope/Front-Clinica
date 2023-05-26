@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  authURL: 'https://usermicroservice-production.up.railway.app/auth/',
+  authURL: 'https://usermicroservice-yh4i.onrender.com/auth/',
 };
