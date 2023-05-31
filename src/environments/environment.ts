@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'https://usermicroservice-yh4i.onrender.com',
+  server: 'https://usermicroservice-production.up.railway.app',
 };
 
 /*

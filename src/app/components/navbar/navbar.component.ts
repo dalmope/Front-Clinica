@@ -13,6 +13,7 @@ import { TokenService } from 'src/app/services/token.service';
 export class NavbarComponent implements OnInit {
   isLogged = false
   isAdmin = false
+  isSecretary = false
   isCollapsed = true;
   focus1;
   focus2;
@@ -46,10 +47,9 @@ export class NavbarComponent implements OnInit {
       next: data => {
         this.tokenService.setToken(data.token);
         this.isLogged = true;
-        this.router.navigate(['/']);
+        location.reload();
       },
       error: err => {
-      console.log("🚀 ~ file: navbar.component.ts ~ line 47 ~ NavbarComponent ~ this.auth.login ~ err", err)
         this.noti.onError(err.error.error);
       },
     });

@@ -11,8 +11,11 @@ import { IndexComponent } from "./pages/index/index.component";
 import { PagesModule } from "./pages/pages.module";
 import { ComponentsModule } from "./components/components.module";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
-import { TablesComponent } from "./pages/admin/tables/tables.component";
+import { ConsultoriosComponent } from "./pages/admin/consultorios/consultorios.component";
 import { EspecialidadComponent } from "./pages/admin/especialidad/especialidad.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { AdminGuard } from "./guards/admin.guard";
+import { CitaComponent } from "./pages/user/cita/cita.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -21,9 +24,10 @@ const routes: Routes = [
   { path: "profile", component: ProfilepageComponent },
   { path: "register", component: RegisterpageComponent },
   { path: "landing", component: LandingpageComponent },
-  { path: "dashboard", component: DashboardComponent},
-  { path: "admin/consultorio", component: TablesComponent },
-  { path: "admin/especialidad", component: EspecialidadComponent }
+  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: "citas", component: CitaComponent, canActivate: [AuthGuard]},
+  { path: "admin/consultorio", component: ConsultoriosComponent, canActivate: [AdminGuard] },
+  { path: "admin/especialidad", component: EspecialidadComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

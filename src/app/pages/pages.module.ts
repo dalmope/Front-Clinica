@@ -24,8 +24,10 @@ import { RegisterpageComponent } from "./examples/registerpage/registerpage.comp
 import { LandingpageComponent } from "./examples/landingpage/landingpage.component";
 import { ComponentsModule } from "../components/components.module";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { TablesComponent } from "./admin/tables/tables.component";
+import { ConsultoriosComponent } from "./admin/consultorios/consultorios.component";
 import { EspecialidadComponent } from "./admin/especialidad/especialidad.component";
+import { CitaComponent } from './user/cita/cita.component';
+import { TimepickerModule } from "ngx-bootstrap/timepicker";
 
 @NgModule({
   imports: [
@@ -45,6 +47,7 @@ import { EspecialidadComponent } from "./admin/especialidad/especialidad.compone
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot()
   ],
@@ -55,8 +58,9 @@ import { EspecialidadComponent } from "./admin/especialidad/especialidad.compone
     RegisterpageComponent,
     LandingpageComponent,
     DashboardComponent,
-    TablesComponent,
+    ConsultoriosComponent,
     EspecialidadComponent,
+    CitaComponent,
   ],
   exports: [
     IndexComponent,
@@ -64,7 +68,8 @@ import { EspecialidadComponent } from "./admin/especialidad/especialidad.compone
     RegisterpageComponent,
     LandingpageComponent,
     DashboardComponent,
-    TablesComponent,
+    ConsultoriosComponent,
+    CitaComponent,
     EspecialidadComponent,
   ],
   providers: []

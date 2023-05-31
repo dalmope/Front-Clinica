@@ -159,3 +159,21 @@
   font-weight: 900;
   color: rgba(255, 255, 255, 0.2) !important;
 }
+
+.bs-timepicker-field{
+  background: 344675;
+  background-color: #344675 !important;
+  color: white !important;
+  background-image: linear-gradient(to bottom left,#344675,#263148,#344675) !important;
+}
+
+.theme-default .bs-datepicker-body table td span.selected {
+  background-color: #344675 !important;
+  background-image: linear-gradient(to bottom left,#344675,#263148,#344675) !important;
+  color: white !important;
+}
+
+.theme-default .bs-datepicker-head {
+  background-color: #344675 !important;
+  background-image: linear-gradient(to bottom left,#344675,#263148,#344675) !important;
+}

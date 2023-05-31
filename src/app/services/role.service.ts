@@ -9,7 +9,7 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class RoleService {
-  
+
   constructor(private httpClient: HttpClient, private tokenService: TokenService) { }
 
   token = this.tokenService.getToken();
@@ -21,6 +21,18 @@ export class RoleService {
   }
 
   public getEspecialidades(): Observable<any> {
-    return this.httpClient.get<any>(`${this.roleURL}/especialidad`, { headers: { Authorization: this.token } });
+    return this.httpClient.get<any>(`${this.roleURL}/especialidad/user`, { headers: { Authorization: this.token } });
+  }
+
+  public create(rol: Role): Observable<any> {
+    return this.httpClient.post(`${this.roleURL}`, rol, { headers: { Authorization: this.token } });
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.roleURL}/especialidad/${id}`, { headers: { Authorization: this.token } });
+  }
+
+  public update(rol: Role): Observable<any> {
+    return this.httpClient.put(`${this.roleURL}/especialidad`, rol, { headers: { Authorization: this.token } });
   }
 }

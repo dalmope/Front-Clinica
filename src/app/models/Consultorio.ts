@@ -3,10 +3,10 @@ export class Consultorio {
     nombre: string;
     descripcion: string;
     estado: Estado
-    constructor(nombre: string, descripcion: string, estado?: Estado, id?: number) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        if (estado) { this.estado = estado; }
-        if (id) { this.id = id; }
+    constructor(data: any) {
+        this.nombre = data.nombre || '';
+        this.descripcion = data.descripcion || '';
+        if (data.estado) { this.estado = data.estado; }
+        if (data.is) { this.id = data.id; }
     }
 }

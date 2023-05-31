@@ -45,7 +45,7 @@ export class RegisterformComponent {
         this.formGroup.reset();
       },
       error: (err: any) => {
-        this.noti.onError(err.error.Error);
+        this.noti.onError(err.error.error);
       }
     });
   }

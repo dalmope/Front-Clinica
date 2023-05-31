@@ -1,0 +1,172 @@
+<div class="wrapper">
+  <div class="page-header">
+    <img class="dots" src="assets/img/dots.png" />
+
+    <img class="path" src="assets/img/path4.png" />
+
+    <div class="container align-items-center">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 ml-auto mr-auto">
+          <div class="card card-coin card-plain">
+            <div class="card-header">
+              <h4 class="title"> Citas </h4>
+            </div>
+            <div class="card-body">
+              <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
+                <tab heading="Lista">
+                  <div *ngIf="totalItems > 0" class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Estado</th>
+                          <th>Especialidad</th>
+                          <th>Fecha</th>
+                          <th>Consultorio</th>
+                          <th>Doctor</th>
+                          <th class="text-right">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of listCitas; let i = index">
+                          <td>{{item.id}}</td>
+                          <td>{{item.estado}}</td>
+                          <td>{{item.especialidad.name}}</td>
+                          <td>{{ item.fechaHora ? (item.fechaHora | date:'dd/MM/yyyy HH:mm') : 'POR_ASIGNAR' }}</td>
+                          <td>{{ item?.consultorio?.nombre ? (item.consultorio.nombre + ' ' + item.consultorio.descripcion ) : 'POR_ASIGNAR' }}
+                          <td>{{ item?.medico?.surname ? (item.medico.surname + ' ' + item.medico.name ) : 'POR_ASIGNAR' }}
+                          </td>
+                          <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                              <i class="tim-icons icon-simple-remove"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalItems"
+                      [ngModel]="pagination" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                      lastText="&raquo;">
+                    </pagination>
+                  </div>
+                  <div *ngIf="totalItems <= 0">
+                    No tienes citas registradas.
+                  </div>
+                </tab>
+                <tab heading="Pedir">
+                  <form [formGroup]="create" (ngSubmit)="createEspecialidad()">
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label"> Especialidad </label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                          <select formControlName="idEspecialidad" class="form-control custom-select">
+                            <option class="espe" *ngFor="let espe of listEspecialidades" [value]="espe.id">{{espe.name}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label"> Motivo </label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                          <input formControlName="motivo" class="form-control" placeholder="Motivo" type="text" />
+                        </div>
+                      </div>
+                    </div>
+                    <span class="form-text">
+                      Todas las Citas se crean por defecto con estado SIN ASIGNAR.
+                    </span>
+                    <button class="btn btn-simple btn-danger btn-icon btn-round float-right" type="submit"
+                      [disabled]="!create.valid">
+                      <i class="tim-icons icon-send"> </i>
+                    </button>
+                  </form>
+                </tab>
+                <tab *ngIf="isSecretary" heading="Asignar">
+                  <div *ngIf="totalItems > 0" class="table-responsive">
+                    <form [formGroup]="asing" (ngSubmit)="asignarCita()">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Estado</th>
+                            <th>Especialidad</th>
+                            <th>Fecha</th>
+                            <th>Doctor</th>
+                            <th>Consultorio</th>
+                            <th class="text-right">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of listAllCitas; let i = index">                            <td>{{item.estado}}</td>
+                            <td>{{item.especialidad.name}}</td>
+                            <td *ngIf="editRowIndex !== i">{{ item.fechaHora ? (item.fechaHora | date:'dd/MM/yyyy HH:mm') : 'POR_ASIGNAR' }}</td>
+                            <td *ngIf="editRowIndex === i">
+                              <div class="row">
+                                <div class="form-group">
+                                  <input
+                                  id="datePicker" 
+                                  type="text"
+                                         placeholder="Datepicker"
+                                         formControlName="fechaHora"
+                                         class="date-picker-class form-control"
+                                         [bsConfig]="{containerClass: 'theme-default', withTimepicker: true, keepDatepickerOpened: true, dateInputFormat: 'MM/DD/YY, h:mm:ss a'}"
+                                         [bsValue]="bsValue"
+                                         bsDatepicker>
+                                </div>
+                              </div>
+                            </td>
+                            <td *ngIf="editRowIndex !== i">{{ item?.medico?.surname ? (item.medico.surname + ' ' + item.medico.name ) : 'POR_ASIGNAR' }}</td>
+                            <td *ngIf="editRowIndex === i">
+                              <div class="form-group">
+                                <select formControlName="idMedico" class="form-control custom-select">
+                                  <option  class="espe" *ngFor="let item of listDoctores" [value]="item.id">
+                                    {{item.name + ' ' + item.surname}}
+                                  </option>
+                                </select>
+                              </div>
+                            </td>
+                            <td *ngIf="editRowIndex !== i">{{ item?.consultorio?.nombre ? (item.consultorio.nombre) : 'POR_ASIGNAR' }}</td>
+                            <td *ngIf="editRowIndex === i">
+                              <div class="form-group">
+                                <select formControlName="idConsultorio" class="form-control custom-select">
+                                  <option class="espe" *ngFor="let item of listConsultorios" [value]="item.id">
+                                    {{item.nombre + ' - ' + item.descripcion}}
+                                  </option>
+                                </select>
+                              </div>
+                            </td>
+                            <td class="td-actions text-right">
+                              <button *ngIf="editRowIndex === i" (click)="asignarCita(item.id)" type="button" rel="tooltip"
+                                class="btn btn-primary btn-sm btn-icon">
+                                <i class="tim-icons icon-send"> </i>
+                              </button>
+                              <button (click)="toggleEditMode(i)" type="button" rel="tooltip"
+                                class="btn btn-info btn-sm btn-icon">
+                                <i class="tim-icons icon-settings-gear-63"></i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                                <i class="tim-icons icon-simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalItems"
+                        [ngModel]="pagination" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                        lastText="&raquo;">
+                      </pagination>
+                    </form>
+                  </div>
+                  <div *ngIf="totalItems <= 0">
+                    No hay citas pendientes por asignar.
+                  </div>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

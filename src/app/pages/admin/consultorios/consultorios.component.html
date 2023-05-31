@@ -9,7 +9,7 @@
         <div class="col-lg-12 col-md-12 ml-auto mr-auto">
           <div class="card card-coin card-plain">
             <div class="card-header">
-              <h4 class="title"> Especialidades </h4>
+              <h4 class="title"> Consultorios </h4>
             </div>
             <div class="card-body">
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
@@ -20,19 +20,21 @@
                         <tr>
                           <th>Nombre</th>
                           <th>Descripcion</th>
+                          <th>Estado</th>
                           <th class="text-right">Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let especialidad of ListaRoles; let i = index">
-                          <td *ngIf="editRowIndex !== i">{{especialidad.name}}</td>
+                        <tr *ngFor="let consultorio of ListaConsultorios; let i = index">
+                          <td *ngIf="editRowIndex !== i">{{consultorio.nombre}}</td>
                           <td *ngIf="editRowIndex === i">
-                            <input [(ngModel)]="especialidad.name" type="text">
+                            <input [(ngModel)]="consultorio.nombre" type="text">
                           </td>
-                          <td *ngIf="editRowIndex !== i">{{especialidad.description}}</td>
+                          <td *ngIf="editRowIndex !== i">{{consultorio.descripcion}}</td>
                           <td *ngIf="editRowIndex === i">
-                            <input [(ngModel)]="especialidad.description" type="text">
+                            <input [(ngModel)]="consultorio.descripcion" type="text">
                           </td>
+                          <td>{{consultorio.estado}}</td>
                           <td class="td-actions text-right">
                             <button *ngIf="editRowIndex === i" (click)="saveEditMode(i)" type="button" rel="tooltip" class="btn btn-primary btn-sm btn-icon">
                               <i class="tim-icons icon-send"> </i>
@@ -54,12 +56,12 @@
                   </div>
                 </tab>
                 <tab heading="Agregar">
-                  <form [formGroup]="create" (ngSubmit)="createEspecialidad()">
+                  <form [formGroup]="create" (ngSubmit)="onSubmit()">
                     <div class="row">
                       <label class="col-sm-3 col-form-label"> Nombre </label>
                       <div class="col-sm-9">
                         <div class="form-group">
-                          <input formControlName="name" class="form-control" placeholder="Nombre" type="text" />
+                          <input formControlName="nombre" class="form-control" placeholder="Nombre" type="text" />
                         </div>
                       </div>
                     </div>
@@ -67,13 +69,13 @@
                       <label class="col-sm-3 col-form-label"> Descripcion </label>
                       <div class="col-sm-9">
                         <div class="form-group">
-                          <input formControlName="description" class="form-control" placeholder="Descripcion"
+                          <input formControlName="descripcion" class="form-control" placeholder="Descripcion"
                             type="text" />
                         </div>
                       </div>
                     </div>
                     <span class="form-text">
-                      Todas las Especialidades se crean por defecto con estado ACTIVO.
+                      Todos los consultorio se crean por defecto con estado ACTIVO.
                     </span>
                     <button class="btn btn-simple btn-danger btn-icon btn-round float-right" type="submit"
                       [disabled]="!create.valid">

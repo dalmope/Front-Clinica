@@ -1,0 +1,6 @@
+enum EstadoCita {
+    POR_ASIGNAR = 'POR_ASIGNAR',
+    ASIGNADA = 'ASIGNADA',
+    CANCELADA = 'CANCELADA',
+    FINALIZADA = 'FINALIZADA'
+}

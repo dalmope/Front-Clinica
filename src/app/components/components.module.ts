@@ -22,6 +22,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { CardComponent } from './card/card.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 
 
@@ -51,6 +52,7 @@ import { CardComponent } from './card/card.component';
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot()
   ],
