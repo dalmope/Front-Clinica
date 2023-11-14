@@ -14,6 +14,9 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   editRowIndex: number = -1;
   totalItems: number = 0;
   pagination = 1;
+  canDelete = 0;
+  canDeleteName = '';
+  getALl = false;
   ListaConsultorios: Consultorio[] = [];
   create = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -32,7 +35,10 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const body = document.getElementsByTagName("body")[0];
     body.classList.add("profile-page");
+    this.getAllActivos();
+  }
 
+  getAllActivos() {
     this.consulService.getAllActivos().subscribe({
       next: (res: any) => {
         this.ListaConsultorios = res;
@@ -46,10 +52,30 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
     });
   }
 
+  toggleGetAll() {
+    if (this.getALl) {
+      this.getAll();
+    } else {
+      this.getAllActivos();
+    }
+  }
+
+  getAll() {
+    this.consulService.getAll().subscribe({
+      next: (res: any) => {
+        this.ListaConsultorios = res;
+        this.totalItems = this.ListaConsultorios.length;
+      },
+      error: () => {
+        this.noti.onWarning('Tu sesión ha expirado');
+        this.token.logOut();
+      }
+    });
+  }
+
   onSubmit(): void {
     this.consulService.create(new Consultorio(this.create.value)).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.ListaConsultorios.push(res);
         this.totalItems = this.ListaConsultorios.length;
       },
@@ -67,8 +93,24 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
     }
   }
 
+  setDelete(id: number, nombre: string) {
+    this.canDelete = id;
+    this.canDeleteName = nombre;
+  }
+
   cancelEditMode() {
     this.editRowIndex = -1;
+  }
+
+  toggleDelete(id: number) {
+    this.consulService.desactivate(id).subscribe({
+      next: (res: any) => {
+        this.getAllActivos();
+      },
+      error: () => {
+        this.token.logOut();
+      }
+    });
   }
 
   guardarCambios(rowIndex: number) {

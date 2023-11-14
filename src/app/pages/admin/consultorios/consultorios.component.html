@@ -12,6 +12,8 @@
               <h4 class="title"> Consultorios </h4>
             </div>
             <div class="card-body">
+              Consultar INACTIVOS: <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'danger'" [(ngModel)]="getALl" 
+              (changeState)="toggleGetAll()"> </bSwitch>
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
                 <tab heading="Lista">
                   <div class="table-responsive">
@@ -34,15 +36,24 @@
                           <td *ngIf="editRowIndex === i">
                             <input [(ngModel)]="consultorio.descripcion" type="text">
                           </td>
-                          <td>{{consultorio.estado}}</td>
+                          <td *ngIf="editRowIndex !== i">{{consultorio.estado}}</td>
+                          <td *ngIf="editRowIndex === i">
+                            <select [(ngModel)]="consultorio.estado" class="form-control">
+                              <option value="ACTIVO">ACTIVO</option>
+                              <option value="INACTIVO">INACTIVO</option>
+                            </select>
+                          </td>
                           <td class="td-actions text-right">
-                            <button *ngIf="editRowIndex === i" (click)="saveEditMode(i)" type="button" rel="tooltip" class="btn btn-primary btn-sm btn-icon">
+                            <button *ngIf="editRowIndex === i" (click)="saveEditMode(i)" type="button" rel="tooltip"
+                              class="btn btn-primary btn-sm btn-icon">
                               <i class="tim-icons icon-send"> </i>
                             </button>
-                            <button (click)="toggleEditMode(i)" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                            <button (click)="toggleEditMode(i)" type="button" rel="tooltip"
+                              class="btn btn-info btn-sm btn-icon">
                               <i class="tim-icons icon-settings-gear-63"></i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                            <button (click)="modelAcept.show(); setDelete(consultorio.id, consultorio.nombre)" type="button" rel="tooltip"
+                              class="btn btn-danger btn-sm btn-icon">
                               <i class="tim-icons icon-simple-remove"></i>
                             </button>
                           </td>
@@ -87,6 +98,32 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+--- MODAL CONFIRM DELETE ---
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" bsModal class="modal fade modal-black" #modelAcept="bs-modal"
+  id="modelAcept" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button aria-hidden="true" class="close" data-dismiss="modal" (click)="modelAcept.hide()" type="button">
+          <i class="tim-icons icon-simple-remove text-white"> </i>
+      </button>
+      <div class="text-muted text-center ml-auto mr-auto">
+        <h3 class="mb-0">¿Estas seguro de eliminar el consultorio {{this.canDeleteName}}? </h3>
+    </div>
+        <form novalidate (ngSubmit)="toggleDelete(this.canDelete); modelAcept.hide()">
+          <div class="text-center">
+            <button class="btn btn-primary my-4" type="submit">
+              Eliminar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
