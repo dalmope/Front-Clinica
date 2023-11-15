@@ -17,7 +17,7 @@ export class RoleService {
   roleURL = this.serverUrl + '/role';
 
   public getAll(): Observable<any> {
-    return this.httpClient.get<any>(this.roleURL, { headers: { Authorization: this.token } });
+    return this.httpClient.get<any>(`${this.roleURL}/especialidad/all`, { headers: { Authorization: this.token } });
   }
 
   public getEspecialidades(): Observable<any> {

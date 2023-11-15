@@ -12,6 +12,7 @@ import { TokenService } from 'src/app/services/token.service';
 export class EspecialidadComponent implements OnInit, OnDestroy {
 
   editRowIndex: number = -1;
+  getALl = false;
   totalItems: number = 0;
   pagination = 1;
   ListaRoles: Role[] = [];
@@ -32,15 +33,7 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName("body")[0];
     body.classList.add("profile-page");
 
-    this.roleService.getEspecialidades().subscribe({
-      next: (res: any) => {
-        this.ListaRoles = res;
-        this.totalItems = this.ListaRoles.length;
-      },
-      error: () => {
-        this.token.logOut();
-      }
-    });
+    this.getEspecialidadesActivas();
   }
 
   onSubmit(): void {
@@ -54,6 +47,19 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  getEspecialidadesActivas (): void {
+    this.roleService.getEspecialidades().subscribe({
+      next: (res: any) => {
+        this.ListaRoles = res;
+        this.totalItems = this.ListaRoles.length;
+      },
+      error: () => {
+        this.token.logOut();
+      }
+    });
+  }
+
 
   createEspecialidad(): void {
     this.roleService.create(new Role(this.create.value)).subscribe({
@@ -100,6 +106,27 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     } else {
       this.cancelEditMode();
     }
+  }
+
+  toggleGetAll() {
+    if (this.getALl) {
+      this.getAll();
+    } else {
+      this.getEspecialidadesActivas();
+    }
+  }
+
+  getAll() {
+    this.roleService.getAll().subscribe({
+      next: (res: any) => {
+        this.ListaRoles = res;
+        this.totalItems = this.ListaRoles.length;
+      },
+      error: () => {
+        this.noti.onWarning('Tu sesión ha expirado');
+        this.token.logOut();
+      }
+    });
   }
 
   cancelEditMode() {

@@ -19,8 +19,8 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   getALl = false;
   ListaConsultorios: Consultorio[] = [];
   create = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
+    descripcion: new FormControl('', [Validators.required]),
   })
 
   constructor(private consulService: ConsultorioService,
@@ -74,10 +74,12 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    console.log(this.create.value);
     this.consulService.create(new Consultorio(this.create.value)).subscribe({
       next: (res: any) => {
         this.ListaConsultorios.push(res);
         this.totalItems = this.ListaConsultorios.length;
+        this.noti.onSuccesfull(res.message);
       },
       error: () => {
         this.token.logOut();

@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="page-header">
-    <img class="dots" src="assets/img/dots.png" />
+    <img class="dots" src="assets/img/dots.png" alt="dots" />
 
-    <img class="path" src="assets/img/path4.png" />
+    <img class="path" src="assets/img/path4.png" alt="path"/>
 
     <div class="container align-items-center">
       <div class="row">
@@ -12,12 +12,12 @@
               <h4 class="title"> Consultorios </h4>
             </div>
             <div class="card-body">
-              Consultar INACTIVOS: <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'danger'" [(ngModel)]="getALl" 
+              Consultar INACTIVOS: <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'danger'" [(ngModel)]="getALl"
               (changeState)="toggleGetAll()"> </bSwitch>
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
                 <tab heading="Lista">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" aria-label="Consultorios registrados en la clínica">
                       <thead>
                         <tr>
                           <th>Nombre</th>
@@ -104,7 +104,7 @@
 </div>
 
 
---- MODAL CONFIRM DELETE ---
+<!-- --- MODAL CONFIRM DELETE --- -->
 
 <div aria-hidden="true" aria-labelledby="myModalLabel" bsModal class="modal fade modal-black" #modelAcept="bs-modal"
   id="modelAcept" role="dialog" tabindex="-1">

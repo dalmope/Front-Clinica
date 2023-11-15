@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="page-header">
-    <img class="dots" src="assets/img/dots.png" />
+    <img class="dots" src="assets/img/dots.png" alt="dots"/>
 
-    <img class="path" src="assets/img/path4.png" />
+    <img class="path" src="assets/img/path4.png" alt="path"/>
 
     <div class="container align-items-center">
       <div class="row">
@@ -12,14 +12,17 @@
               <h4 class="title"> Especialidades </h4>
             </div>
             <div class="card-body">
+              Consultar INACTIVOS: <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'danger'" [(ngModel)]="getALl" 
+              (changeState)="toggleGetAll()"> </bSwitch>
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
                 <tab heading="Lista">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" aria-label="Especialidades">
                       <thead>
                         <tr>
                           <th>Nombre</th>
                           <th>Descripcion</th>
+                          <th>Estado</th>
                           <th class="text-right">Acciones</th>
                         </tr>
                       </thead>
@@ -32,6 +35,13 @@
                           <td *ngIf="editRowIndex !== i">{{especialidad.description}}</td>
                           <td *ngIf="editRowIndex === i">
                             <input [(ngModel)]="especialidad.description" type="text">
+                          </td>
+                          <td *ngIf="editRowIndex !== i">{{especialidad.estado}}</td>
+                          <td *ngIf="editRowIndex === i">
+                            <select [(ngModel)]="especialidad.estado" class="form-control">
+                              <option value="ACTIVO">ACTIVO</option>
+                              <option value="INACTIVO">INACTIVO</option>
+                            </select>
                           </td>
                           <td class="td-actions text-right">
                             <button *ngIf="editRowIndex === i" (click)="saveEditMode(i)" type="button" rel="tooltip" class="btn btn-primary btn-sm btn-icon">
