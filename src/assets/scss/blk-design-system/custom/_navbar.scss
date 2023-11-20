@@ -19,11 +19,11 @@
   .navbar-nav {
     .nav-item .nav-link {
       position: relative;
-      color: inherit;
+      color: $black;
       line-height: 20px;
       display: inline-flex;
       &:hover {
-        color: $opacity-8;
+        color: $opacity-gray-8;
       }
     }
   }
@@ -85,7 +85,7 @@
     }
 
     .form-control::placeholder {
-      color: $dark-gray !important;
+      color: $black !important;
     }
   }
 
@@ -117,7 +117,7 @@
     position: relative;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    color: $white;
+    color: $black;
     text-transform: capitalize;
     font-size: $font-paragraph;
     span {
@@ -165,7 +165,7 @@
 .navbar-nav li {
   padding: 0 10px;
   a {
-    color: $white;
+    color: $black;
   }
   i {
     vertical-align: middle;
@@ -206,7 +206,7 @@
 
         .collapse-brand {
           font-size: $font-size-xl;
-          color: $white;
+          color: $black;
           a {
             font-weight: $font-weight-bold;
           }
@@ -214,7 +214,7 @@
 
         .collapse-close {
           .navbar-toggler {
-            color: $white;
+            color: $black;
             font-size: $font-size-xl;
           }
         }
@@ -323,7 +323,7 @@
       width: 22px;
       height: 1px;
       border-radius: 1px;
-      background: $white;
+      background: $black;
 
       &.navbar-kebab {
         height: 4px;
@@ -443,7 +443,7 @@
     left: 0;
     top: 0;
     margin: 0.7rem;
-    background: $card-black-background;
+    background: linear-gradient(263deg,#eb9b91 0%,#fd5d93 100%);
     border-radius: $border-radius-sm;
     padding: 1.4rem;
   }

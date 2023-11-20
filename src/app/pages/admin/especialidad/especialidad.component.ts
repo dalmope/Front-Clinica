@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-especialidad',
+  styleUrls: ['./especialidad.component.scss'],
   templateUrl: './especialidad.component.html',
 })
 export class EspecialidadComponent implements OnInit, OnDestroy {

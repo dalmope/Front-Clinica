@@ -187,17 +187,17 @@
 
   &.modal-black {
     .modal-content {
-      background: $card-black-background;
+      background: linear-gradient(263deg,#eb9b91 0%,#fd5d93 100%);
       color: rgba($white, 0.8);
       .modal-header {
         .modal-title,
         .title {
-          color: rgba($white, 0.9);
+          color: $black
         }
       }
       .modal-body {
         p {
-          color: rgba($white, 0.8);
+          color: $black;
         }
       }
     }
@@ -208,7 +208,7 @@
     h5,
     h6,
     p {
-      color: $white;
+      color: $black;
     }
   }
 }

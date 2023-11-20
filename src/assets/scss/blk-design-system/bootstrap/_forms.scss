@@ -11,7 +11,7 @@
   padding: $input-padding-y $input-padding-x;
   font-size: $font-size-base;
   line-height: $input-line-height;
-  color: $input-color;
+  color: $black;
   background-color: $input-bg;
   background-clip: padding-box;
   border: $input-border-width solid $input-border-color;
@@ -39,7 +39,7 @@
 
   // Placeholder
   &::placeholder {
-    color: $input-placeholder-color;
+    color: $black;
     // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
     opacity: 1;
   }
@@ -211,7 +211,7 @@ textarea.form-control {
   margin-left: -$form-check-input-gutter;
 
   &:disabled ~ .form-check-label {
-    color: $text-muted;
+    color: $black;
   }
 }
 

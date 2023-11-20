@@ -6,7 +6,7 @@
 
   > .nav-item {
     > .nav-link {
-      color: $white;
+      color: $black;
       margin: 0;
       margin-right: 5px;
       background-color: $transparent-bg;
@@ -16,12 +16,12 @@
 
       &:hover {
         background-color: $transparent-bg;
-        border: 1px solid darken($black, 5%);
-        color: rgba($white, 0.8);
+        border: 1px solid darken($primary, 5%);
+        color: rgba($primary, 0.8);
       }
 
       &.active {
-        border: 1px solid $white;
+        border: 1px solid $primary;
         border-radius: 30px;
       }
 
@@ -35,7 +35,7 @@
 
     &.disabled > .nav-link,
     &.disabled > .nav-link:hover {
-      color: rgba(255, 255, 255, 0.5);
+      color: $black;
     }
   }
 

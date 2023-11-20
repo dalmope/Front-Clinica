@@ -21,7 +21,7 @@
 
   // Disabled state lightens text
   &.disabled {
-    color: $nav-link-disabled-color;
+    color: $black;
   }
 }
 
@@ -41,11 +41,11 @@
     @include border-top-radius($nav-tabs-border-radius);
 
     @include hover-focus {
-      border-color: $nav-tabs-link-hover-border-color;
+      border-color: $black;
     }
 
     &.disabled {
-      color: $nav-link-disabled-color;
+      color: $black;
       background-color: transparent;
       border-color: transparent;
     }
@@ -77,7 +77,7 @@
 
   .nav-link.active,
   .show > .nav-link {
-    color: $nav-pills-link-active-color;
+    color: $black;
     background-color: $nav-pills-link-active-bg;
   }
 }

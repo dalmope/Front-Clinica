@@ -15,7 +15,7 @@
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
                 <tab heading="Lista">
                   <div *ngIf="totalItems > 0" class="table-responsive">
-                    <table class="table">
+                    <table class="table" aria-label="Tabla de citas">
                       <thead>
                         <tr>
                           <th>Id</th>
@@ -86,7 +86,7 @@
                 <tab *ngIf="isSecretary" heading="Asignar">
                   <div *ngIf="totalItems > 0" class="table-responsive">
                     <form [formGroup]="asing" (ngSubmit)="asignarCita()">
-                      <table class="table">
+                      <table class="table" aria-label="Asignar Cita">
                         <thead>
                           <tr>
                             <th>Estado</th>

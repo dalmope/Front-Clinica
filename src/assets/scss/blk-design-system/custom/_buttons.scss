@@ -123,7 +123,7 @@
   @include btn-styles($danger, $danger-states);
 }
 .btn-neutral {
-  @include btn-styles($white, $white);
+  @include btn-styles($black, $black);
 }
 
 .btn {

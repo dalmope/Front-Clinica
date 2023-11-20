@@ -1,5 +1,5 @@
 .card {
-  background: $card-black-background;
+  background: $black;
   border: 0;
   position: relative;
   width: 100%;
@@ -7,7 +7,7 @@
   box-shadow: $box-shadow;
 
   label {
-    color: rgba($white, 0.6);
+    color: rgba($black, 0.6);
   }
 
   .card-title {
@@ -106,7 +106,7 @@
   }
 
   &.card-coin {
-    border: 2px solid $default;
+    border: 2px solid $black;
 
     .card-header {
       margin: -100px auto 20px;

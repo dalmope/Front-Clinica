@@ -8,7 +8,7 @@
         &.brand {
           .h1-seo,
           h3 {
-            color: $white;
+            color: $black;
             font-weight: 600;
             text-transform: capitalize;
             span {
@@ -58,7 +58,7 @@
       animation: move-left-right 5s infinite;
       height: 200px;
       width: 200px;
-      opacity: 0.1;
+      opacity: 0.4;
       left: -5%;
       bottom: 0%;
     }
@@ -76,7 +76,7 @@
       animation: move-left-right 6s infinite;
       height: 250px;
       width: 250px;
-      opacity: 0.1;
+      opacity: 0.3;
       left: 32%;
       bottom: 29%;
     }

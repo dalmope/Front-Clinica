@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-tables',
+  styleUrls: ['./consultorios.component.scss'],
   templateUrl: './consultorios.component.html',
 })
 export class ConsultoriosComponent implements OnInit, OnDestroy {
@@ -80,6 +81,7 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
         this.ListaConsultorios.push(res);
         this.totalItems = this.ListaConsultorios.length;
         this.noti.onSuccesfull(res.message);
+        this.toggleGetAll();
       },
       error: () => {
         this.token.logOut();
@@ -119,6 +121,7 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
     this.consulService.update(this.ListaConsultorios[rowIndex]).subscribe({
       next: (res: any) => {
         this.noti.onSuccesfull(res.message);
+        this.toggleGetAll();
       },
       error: () => {
         this.token.logOut();

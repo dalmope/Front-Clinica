@@ -113,7 +113,7 @@ $warning-states: #ff6491 !default;
 $danger-states: #ec250d !default;
 $black-states: #1d253b !default;
 
-$background-black: #171941 !default;
+$background-black: #ffffff !default;
 $background-states-black: #1e1e24 !default;
 
 // opacity
@@ -497,7 +497,7 @@ $icon-size-xl: 5rem !default;
 
 // Tables
 
-$table-cell-padding: 1rem !default;
+$table-cell-padding: 0.3rem !default;
 $table-cell-padding-sm: 0.3rem !default;
 
 $table-bg: transparent !default;
@@ -603,12 +603,12 @@ $input-alternative-box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15),
 $input-focus-alternative-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
   0 1px 3px rgba(0, 0, 0, 0.08);
 
-$input-color: $opacity-8 !default;
+$input-color: $black !default;
 $input-border-color: #cad1d7 !default;
 $input-border-width: $input-btn-border-width !default;
 $input-box-shadow: none !default; // 0 1px 3px 0 $gray-400 !default;
 
-$input-focus-bg: $white !default;
+$input-focus-bg: $black !default;
 $input-focus-border-color: rgba(50, 151, 211, 0.25);
 $input-focus-color: $input-color !default;
 $input-focus-width: 0 !default;
