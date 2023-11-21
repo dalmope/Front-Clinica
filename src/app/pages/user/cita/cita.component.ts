@@ -44,7 +44,7 @@ export class CitaComponent implements OnInit, OnDestroy {
     create = new FormGroup({
       idEspecialidad: new FormControl('', [Validators.required]),
       codigo: new FormControl(this.username),
-      motivo: new FormControl('', [Validators.required]),
+      motivo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*')]),
     })
 
     asing = new FormGroup({
@@ -139,7 +139,7 @@ export class CitaComponent implements OnInit, OnDestroy {
   createEspecialidad(): void {
     this.citaService.create(new CrearCita(this.create.value)).subscribe({
       next: (res: any) => {
-        this.noti.onSuccesfull("Especialidad creada correctamente");
+        this.noti.onSuccesfull("Cita creada correctamente");
         this.getCitas();
       },
       error: (err: any) => {
