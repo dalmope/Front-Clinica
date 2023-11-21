@@ -18,8 +18,8 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
   pagination = 1;
   ListaRoles: Role[] = [];
   create = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
+    description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
   })
 
   constructor(private roleService: RoleService,

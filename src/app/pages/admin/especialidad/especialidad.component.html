@@ -12,10 +12,15 @@
               <h4 class="title"> Especialidades </h4>
             </div>
             <div class="card-body">
-              Consultar INACTIVOS: <bSwitch [switch-on-color]="'success'" [switch-off-color]="'info'" [(ngModel)]="getALl" 
-              (changeState)="toggleGetAll()"> </bSwitch>
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
                 <tab heading="Lista">
+                  Consultar INACTIVOS: <bSwitch 
+                  [switch-on-color]="'warning'" 
+                  [switch-off-color]="'danger'" 
+                  [switch-on-text]="'SI'"
+                  [switch-off-text]="'NO'"
+                  [(ngModel)]="getALl"
+                  (changeState)="toggleGetAll()"> </bSwitch>
                   <div class="table-responsive">
                     <table class="table" aria-label="Especialidades">
                       <thead>

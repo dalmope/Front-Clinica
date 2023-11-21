@@ -20,8 +20,8 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   getALl = false;
   ListaConsultorios: Consultorio[] = [];
   create = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    descripcion: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
+    descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
   })
 
   constructor(private consulService: ConsultorioService,
