@@ -74,7 +74,6 @@ export class CitaComponent implements OnInit, OnDestroy {
   getAllCitas(): void {
     this.citaService.getAll().subscribe({
       next: (res: any) => {
-        console.log("all citas", res);
         this.listAllCitas = res;
       },
       error: (err: any) => {

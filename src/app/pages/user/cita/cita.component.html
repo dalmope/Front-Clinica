@@ -18,7 +18,6 @@
                     <table class="table" aria-label="Tabla de citas">
                       <thead>
                         <tr>
-                          <th>Id</th>
                           <th>Estado</th>
                           <th>Especialidad</th>
                           <th>Fecha</th>
@@ -29,7 +28,6 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of listCitas; let i = index">
-                          <td>{{item.id}}</td>
                           <td>{{item.estado}}</td>
                           <td>{{item.especialidad.name}}</td>
                           <td>{{ item.fechaHora ? (item.fechaHora | date:'dd/MM/yyyy HH:mm') : 'POR_ASIGNAR' }}</td>
