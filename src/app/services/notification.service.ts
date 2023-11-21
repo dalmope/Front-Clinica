@@ -12,27 +12,27 @@ export class NotificationService {
 
   onCongrats(message) {
     message = (message === undefined) ? 'Congratulations! You have successfully completed this task.' : message;
-    this.showNotification('Congratulations!', 'icon-coins', 'bottom','center', message, 'alert-primary');
+    this.showNotification('¡Congratulations!', 'icon-coins', 'bottom','center', message, 'alert-primary');
   }
 
   onInformation(message) {
     message = (message === undefined) ? 'You have successfully completed this task.' : message;
-    this.showNotification('Info!', 'icon-trophy', 'bottom','center', message, 'alert-info');
+    this.showNotification('¡Informacion!', 'icon-trophy', 'bottom','center', message, 'alert-info');
   }
 
   onSuccesfull(message) {
     message = (message === undefined) ? 'You have successfully completed this task.' : message;
-    this.showNotification('Heads up!', 'icon-bell-55', 'bottom','center', message, 'alert-success');
+    this.showNotification('¡Excelente!', 'icon-bell-55', 'bottom','center', message, 'alert-success');
   }
 
   onWarning(message) {
     message = (message === undefined) ? 'Something went wrong, please try again.' : message;
-    this.showNotification('Warning!', 'icon-bulb-63', 'bottom','center', message, "alert-warning");
+    this.showNotification('¡Advertencia!', 'icon-bulb-63', 'bottom','center', message, "alert-warning");
   }
 
   onError(message) {
     message = (message === undefined) ? 'Something went wrong, please try again.' : message;
-    this.showNotification('Oh snap!', 'icon-support-17', 'bottom','center', message, "alert-danger");
+    this.showNotification('¡Lo sentimos!', 'icon-support-17', 'bottom','center', message, "alert-danger");
   }
 
    addToSetTemporarily(element, duration) {

@@ -13,6 +13,8 @@ import { TokenService } from 'src/app/services/token.service';
 export class EspecialidadComponent implements OnInit, OnDestroy {
 
   editRowIndex: number = -1;
+  canDelete = 0;
+  canDeleteName: string = '';
   getALl = false;
   totalItems: number = 0;
   pagination = 1;
@@ -37,18 +39,6 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     this.getEspecialidadesActivas();
   }
 
-  onSubmit(): void {
-    this.roleService.getEspecialidades().subscribe({
-      next: (res: any) => {
-        this.ListaRoles = res;
-        this.totalItems = this.ListaRoles.length;
-      },
-      error: () => {
-        this.token.logOut();
-      }
-    });
-  }
-
   getEspecialidadesActivas (): void {
     this.roleService.getEspecialidades().subscribe({
       next: (res: any) => {
@@ -61,12 +51,17 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     });
   }
 
+  setDelete(id: number, name: string): void {
+    this.canDelete = id;
+    this.canDeleteName = name;
+  }
+
 
   createEspecialidad(): void {
     this.roleService.create(new Role(this.create.value)).subscribe({
       next: (res: any) => {
         this.noti.onSuccesfull("Especialidad creada correctamente");
-        this.onSubmit();
+        this.toggleGetAll();
       },
       error: () => {
         this.noti.onError("No se pudo crear la especialidad");
@@ -78,7 +73,7 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     this.roleService.delete(id).subscribe({
       next: () => {
         this.noti.onSuccesfull("Especialidad eliminada correctamente");
-        this.onSubmit();
+        this.toggleGetAll();
       },
       error: () => {
         this.noti.onError("No se pudo eliminar la especialidad");
@@ -137,6 +132,17 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
   saveEditMode(rowIndex: number) {
     this.cancelEditMode()
     this.updateEspecialidad(rowIndex);
+  }
+
+  toggleDelete(id: number) {
+    this.roleService.delete(id).subscribe({
+      next: (res: any) => {
+        this.toggleGetAll();
+      },
+      error: () => {
+        this.token.logOut();
+      }
+    });
   }
 
 }
