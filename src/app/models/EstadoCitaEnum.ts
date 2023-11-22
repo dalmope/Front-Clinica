@@ -1,0 +1,6 @@
+export enum EstadoCitaEnum {
+    POR_ASIGNAR = "POR_ASIGNAR",
+    ASIGNADA = "ASIGNADA",
+    CANCELADA = "CANCELADA",
+    PENDIENTE = "FINALIZADA"
+}

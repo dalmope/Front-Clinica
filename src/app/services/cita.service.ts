@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { Citas } from '../models/Citas';
 import { AsignarCita } from '../models/AsignarCita';
+import { EstadoCitaEnum } from '../models/EstadoCitaEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,15 @@ export class CitaService {
 
   public getAllByUser(): Observable<Citas> {
     return this.httpClient.get<Citas>(this.citaUrl + '/paciente/' + this.username, { headers: { Authorization: this.token } });
+  }
+
+  public getAllByEstado(estado: EstadoCitaEnum): Observable<Citas> {
+    return this.httpClient.get<Citas>(this.citaUrl + '/estado/' + estado, { headers: { Authorization: this.token } });
+  }
+
+  public deleteCita(id: number): Observable<any> {
+    console.log("id: " + id);
+    return this.httpClient.delete<any>(this.citaUrl + '/' + id, { headers: { Authorization: this.token } });
   }
 
   public asignarCita(cita: AsignarCita): Observable<any> {

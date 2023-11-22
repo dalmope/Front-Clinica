@@ -13,8 +13,9 @@
             </div>
             <div class="card-body">
               <tabset class="nav-tabs-danger justify-content-center tab-subcategories">
-                <tab heading="Lista">
-                  <div *ngIf="totalItems > 0" class="table-responsive">
+                <tab heading="Mis Citas">
+
+                  <div *ngIf="totalMisCitas > 0" class="table-responsive">
                     <table class="table" aria-label="Tabla de citas">
                       <thead>
                         <tr>
@@ -27,7 +28,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let item of listCitas; let i = index">
+                        <tr *ngFor="let item of misCitas; let i = index">
                           <td>{{item.estado}}</td>
                           <td>{{item.especialidad.name}}</td>
                           <td>{{ item.fechaHora ? (item.fechaHora | date:'dd/MM/yyyy HH:mm') : 'POR_ASIGNAR' }}</td>
@@ -35,19 +36,19 @@
                           <td>{{ item?.medico?.surname ? (item.medico.surname + ' ' + item.medico.name ) : 'POR_ASIGNAR' }}
                           </td>
                           <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                            <button *ngIf="item.estado !== 'CANCELADA'" (click)="modelAcept.show(); setDeleteCita(item.id)" type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                               <i class="tim-icons icon-simple-remove"></i>
                             </button>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                    <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalItems"
+                    <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalMisCitas"
                       [ngModel]="pagination" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
                       lastText="&raquo;">
                     </pagination>
                   </div>
-                  <div *ngIf="totalItems <= 0">
+                  <div *ngIf="totalMisCitas <= 0">
                     No tienes citas registradas.
                   </div>
                 </tab>
@@ -82,7 +83,14 @@
                   </form>
                 </tab>
                 <tab *ngIf="isSecretary" heading="Asignar">
-                  <div *ngIf="totalItems > 0" class="table-responsive">
+                  Consultar POR_ASIGNAR: <bSwitch 
+                  [switch-on-color]="'warning'" 
+                  [switch-off-color]="'danger'" 
+                  [switch-on-text]="'SI'"
+                  [switch-off-text]="'NO'"
+                  [(ngModel)]="getAll"
+                  (changeState)="toggleGetAll()"> </bSwitch>
+                  <div *ngIf="totalAllCitas > 0" class="table-responsive">
                     <form [formGroup]="asing" (ngSubmit)="asignarCita()">
                       <table class="table" aria-label="Asignar Cita">
                         <thead>
@@ -150,13 +158,13 @@
                           </tr>
                         </tbody>
                       </table>
-                      <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalItems"
+                      <pagination class="pagination-danger" [boundaryLinks]="true" [totalItems]="totalAllCitas"
                         [ngModel]="pagination" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
                         lastText="&raquo;">
                       </pagination>
                     </form>
                   </div>
-                  <div *ngIf="totalItems <= 0">
+                  <div *ngIf="totalAllCitas <= 0">
                     No hay citas pendientes por asignar.
                   </div>
                 </tab>
@@ -164,6 +172,33 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- --- MODAL CONFIRM DELETE --- -->
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" bsModal class="modal fade modal-black" #modelAcept="bs-modal"
+  id="modelAcept" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button aria-hidden="true" class="close" data-dismiss="modal" (click)="modelAcept.hide()" type="button">
+          <i class="tim-icons icon-simple-remove text-white"> </i>
+      </button>
+      <div class="text-muted text-center ml-auto mr-auto">
+        <h3 class="mb-0">¿Estas seguro de cancelar la cita medica? </h3>
+    </div>
+        <form novalidate (ngSubmit)="toggleCancelarCita(this.citaDelete); modelAcept.hide()">
+          <div class="text-center">
+            <button class="btn btn-primary my-4" type="submit">
+              Eliminar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
