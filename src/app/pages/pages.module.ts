@@ -28,6 +28,7 @@ import { ConsultoriosComponent } from "./admin/consultorios/consultorios.compone
 import { EspecialidadComponent } from "./admin/especialidad/especialidad.component";
 import { CitaComponent } from './user/cita/cita.component';
 import { TimepickerModule } from "ngx-bootstrap/timepicker";
+import { RecoveryComponent } from './user/recovery-password/recovery/recovery.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { TimepickerModule } from "ngx-bootstrap/timepicker";
     ConsultoriosComponent,
     EspecialidadComponent,
     CitaComponent,
+    RecoveryComponent,
   ],
   exports: [
     IndexComponent,
@@ -71,6 +73,7 @@ import { TimepickerModule } from "ngx-bootstrap/timepicker";
     ConsultoriosComponent,
     CitaComponent,
     EspecialidadComponent,
+    RecoveryComponent,
   ],
   providers: []
 })

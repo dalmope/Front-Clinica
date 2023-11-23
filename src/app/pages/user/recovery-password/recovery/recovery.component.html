@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div class="section section-signup">
+    <div class="container">
+      <div class="squares square-1"></div>
+      <div class="squares square-2"></div>
+      <div class="squares square-3"></div>
+      <div class="squares square-4"></div>
+      <div class="row row-grid justify-content-between align-items-center">
+        <div class="col-lg-6">
+          <h3 class="display-3 text-muted">
+            Recuperar tu contraseña
+          </h3>
+          <p class="text-muted mb-3">
+            Ingresa tu código y te enviaremos un enlace para
+            restablecer tu contraseña.
+          </p> <br />
+          <p class="text-muted mb-0">
+            ¿No tienes una cuenta?
+          </p>
+          <div class="btn-wrapper">
+            <a class="btn btn-danger" [routerLink]="['/register']">
+              Registrate
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-lg-auto">
+          <div class="card card-register">
+            <div class="card-header">
+              <img alt="Card image" class="card-img" src="assets/img/square1-red.png" />
+
+              <h4 class="card-title">Recuperar</h4>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-3">
+                Ingresa tu código.
+              </p> <br />
+              <div *ngIf="!isToken">
+                <form class="form" [formGroup]="recovery" (ngSubmit)="submitRecovery()">
+                  <div class="input-group form-group" [ngClass]="{ 'input-group-focus': focus && !danger && !success }"
+                    [ngClass]="{ 'has-danger': danger, 'has-success': success }">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fas fa-user-tag"> </i>
+                      </div>
+                    </div>
+                    <input autocomplete="off" formControlName="dniNumber" class="form-control" placeholder="Código"
+                      type="text" (focus)="onFocus()" (blur)="onBlur()" />
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-warning mr-1" [disabled]="!recovery.valid">Enviar</button>
+                  </div>
+                </form>
+              </div>
+              <div *ngIf="isToken" >
+                <form class="form" [formGroup]="changePassword" (ngSubmit)="submitChange()">
+                  <div class="input-group form-group" [ngClass]="{ 'input-group-focus': focus && !danger && !success }"
+                    [ngClass]="{ 'has-danger': danger, 'has-success': success }">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fas fa-key"> </i>
+                      </div>
+                    </div>
+                    <input autocomplete="off" formControlName="password" class="form-control" placeholder="Nueva Contraseña"
+                      type="password" (focus)="onFocus()" (blur)="onBlur()" />
+                  </div>
+                  <div class="input-group form-group" [ngClass]="{ 'input-group-focus': focus && !danger && !success }"
+                    [ngClass]="{ 'has-danger': danger, 'has-success': success }">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fas fa-key"> </i>
+                      </div>
+                    </div>
+                    <input autocomplete="off" formControlName="confirmPassword" class="form-control"
+                      placeholder="Confirma tu contraseña" type="password" (focus)="onFocus()" (blur)="onBlur()" />
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-warning mr-1" [disabled]="!changePassword.valid">Enviar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

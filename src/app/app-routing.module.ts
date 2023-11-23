@@ -16,6 +16,7 @@ import { EspecialidadComponent } from "./pages/admin/especialidad/especialidad.c
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
 import { CitaComponent } from "./pages/user/cita/cita.component";
+import { RecoveryComponent } from "./pages/user/recovery-password/recovery/recovery.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "index", component: IndexComponent },
   { path: "profile", component: ProfilepageComponent },
   { path: "register", component: RegisterpageComponent },
+  { path: "recovery/:token", component: RecoveryComponent },
   { path: "landing", component: LandingpageComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
   { path: "citas", component: CitaComponent, canActivate: [AuthGuard]},

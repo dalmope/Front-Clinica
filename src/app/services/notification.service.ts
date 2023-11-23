@@ -12,7 +12,7 @@ export class NotificationService {
 
   onCongrats(message) {
     message = (message === undefined) ? 'Congratulations! You have successfully completed this task.' : message;
-    this.showNotification('¡Congratulations!', 'icon-coins', 'bottom','center', message, 'alert-primary');
+    this.showNotification('!Felicidades!', 'icon-coins', 'bottom','center', message, 'alert-primary');
   }
 
   onInformation(message) {

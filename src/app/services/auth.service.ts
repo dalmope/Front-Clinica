@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { JwtDTO } from '../models/jwt-dto';
 import { LoginUsuario } from '../models/login-usuario';
 import { NuevoUsuario } from '../models/nuevo-usuario';
+import { ChangePassword } from '../models/change-passwrord';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,13 @@ export class AuthService {
 
   public refresh(dto: JwtDTO): Observable<JwtDTO> {
     return this.httpClient.post<JwtDTO>(this.authURL + 'refresh', dto);
+  }
+
+  public recoveryPassword(dniNumber: string): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'recovery', {dniNumber});
+  }
+
+  public changePassword(change: ChangePassword): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'change-password', change);
   }
 }
