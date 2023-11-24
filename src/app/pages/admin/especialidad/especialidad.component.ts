@@ -20,9 +20,14 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
   pagination = 1;
   ListaRoles: Role[] = [];
   create = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
-    description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z_ ]*$')]),
+    description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z_ ]*$')]),
   })
+  update = new FormGroup({
+    nombre: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z_ ]*$')]),
+    descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z_ 0-9]*$')]),
+    estado: new FormControl('', [Validators.required]),
+  });
 
   constructor(private roleService: RoleService,
     private token: TokenService, private noti: NotificationService) { }
@@ -85,10 +90,28 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     this.pagination = event;
   }
 
+  validarUpdate(rowIndex: number):boolean {
+    const usuario = this.ListaRoles[rowIndex];
+
+    this.update.get('nombre').setValue(usuario.name);
+    this.update.get('descripcion').setValue(usuario.description);
+    this.update.get('estado').setValue(usuario.estado);
+
+    if (this.update.valid) {
+      return true;
+    }
+
+    return false;
+  }
+
   updateEspecialidad(rowIndex: number): void {
+    if (!this.validarUpdate(rowIndex)) {
+      this.noti.onError('Error en los datos ingresados, no se pudo actualizar la especialidad');
+      return;
+    }
     this.roleService.update(this.ListaRoles[rowIndex]).subscribe({
       next: (res: any) => {
-        this.noti.onSuccesfull(res.message);
+        this.noti.onSuccesfull('Especialidad actualizada correctamente');
       },
       error: () => {
         this.token.logOut();

@@ -21,8 +21,13 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
   ListaConsultorios: Consultorio[] = [];
   create = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
-    descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
-  })
+    descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z 0-9]*$')]),
+  });
+  update = new FormGroup({
+    nombre: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]*$')]),
+    descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-zA-Z 0-9]*$')]),
+    estado: new FormControl('', [Validators.required]),
+  });
 
   constructor(private consulService: ConsultorioService,
     private noti : NotificationService,
@@ -117,7 +122,25 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
     });
   }
 
+  validarUpdate(rowIndex: number):boolean {
+    const usuario = this.ListaConsultorios[rowIndex];
+
+    this.update.get('nombre').setValue(usuario.nombre);
+    this.update.get('descripcion').setValue(usuario.descripcion);
+    this.update.get('estado').setValue(usuario.estado);
+
+    if (this.update.valid) {
+      return true;
+    }
+
+    return false;
+  }
+
   guardarCambios(rowIndex: number) {
+    if (!this.validarUpdate(rowIndex)) {
+      this.noti.onError('Error en los datos ingresados, no se pudo actualizar el consultorio');
+      return;
+    }
     this.consulService.update(this.ListaConsultorios[rowIndex]).subscribe({
       next: (res: any) => {
         this.noti.onSuccesfull(res.message);
