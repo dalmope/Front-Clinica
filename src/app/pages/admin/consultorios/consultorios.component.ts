@@ -115,6 +115,7 @@ export class ConsultoriosComponent implements OnInit, OnDestroy {
     this.consulService.desactivate(id).subscribe({
       next: (res: any) => {
         this.getAllActivos();
+        this.noti.onSuccesfull('Se ha desactivado el consultorio');
       },
       error: () => {
         this.token.logOut();

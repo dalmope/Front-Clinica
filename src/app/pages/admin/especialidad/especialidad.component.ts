@@ -161,6 +161,7 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
     this.roleService.delete(id).subscribe({
       next: (res: any) => {
         this.toggleGetAll();
+        this.noti.onSuccesfull('Se ha desactivado el consultorio');
       },
       error: () => {
         this.token.logOut();
